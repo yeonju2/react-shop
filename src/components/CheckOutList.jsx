@@ -20,22 +20,11 @@ export default function Orders() {
       .reduce((l, r) => l + r, 0);
   }, [orders, prototypes]);
 
-
-  const CheckOut = () => {
-    navigate('/CheckOut', {
-      state: {
-          //param1: orders, 
-          //param2: prototypes,
-      },
-    });
-  };
-
   if (orders.length === 0) {
     return (
       <aside>
         <div className="empty">
           <div className="title">주문내역이 없어요!</div>
-          <div className="subtitle">Click on a + to add an order</div>
         </div>
       </aside>
     );
@@ -48,8 +37,8 @@ export default function Orders() {
           {orders.map((order) => {
             const { id } = order;
             const prototype = prototypes.find((p) => p.id === id);
-            console.log(id);
             const click = () => {
+              console.log(id);
               remove(id);
             };
             return (
@@ -86,9 +75,9 @@ export default function Orders() {
           <button
             className="btn btn--secondary"
             style={{ width: "100%", marginTop: 10 }}
-            onClick={CheckOut}
+            onClick={() => navigate('/')}
           >
-            Checkout
+            Cancel
           </button>
         </div>
       </div>
